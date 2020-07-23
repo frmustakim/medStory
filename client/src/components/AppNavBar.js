@@ -1,16 +1,9 @@
 import React, { Component, Fragment } from "react";
-import { AppBar, Toolbar, Typography, Button, Link } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Link } from "@material-ui/core";
 import Register from "./auth/Register";
 import LoginModal from "./auth/LoginModal";
 
 export default class AppNavBar extends Component {
-  onRegisterClick = () => {
-    return (
-      <Fragment>
-        <Register />
-      </Fragment>
-    );
-  };
   render() {
     return (
       <div style={{ flexGrow: "1" }}>
@@ -22,12 +15,12 @@ export default class AppNavBar extends Component {
               </Link>
             </Typography>
             <Fragment>
-              <Button color="inherit" href="">
+              {/* <Button color="inherit" href="">
                 About
               </Button>
               <Button color="inherit" href="">
                 Contact
-              </Button>
+              </Button> */}
               <Register />
               <LoginModal />
             </Fragment>

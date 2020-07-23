@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginModal() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [input, setInput] = useState({});
 
   const handleOpen = () => {
@@ -51,6 +51,9 @@ export default function LoginModal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const { email, password } = input;
+    console.log("email", email);
+    console.log("password", password);
     console.log(input);
   };
 

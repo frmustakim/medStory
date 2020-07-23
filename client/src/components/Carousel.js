@@ -6,45 +6,45 @@ import img1 from "../image/med2.jpg";
 import img2 from "../image/med7.jpg";
 import img3 from "../image/med8.jpg";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    position: "relative"
+    position: "relative",
   },
   overlay: {
     position: "absolute",
     top: "20px",
     left: "20px",
-    color: "black"
+    color: "blue",
     // backgroundColor: "white"
   },
   media: {
-    overflow: "hidden"
-  }
+    overflow: "hidden",
+  },
 }));
 
-export default props => {
+export default (props) => {
   const items = [
     {
       image: img1,
       name: "Random Name #1",
-      description: "Create your Medical History database."
+      description: "Create your Medical History database.",
     },
     {
       image: img2,
       name: "Random Name #2",
-      description: "Keep track of your drug records."
+      description: "Keep track of your drug records.",
     },
     {
       image: img3,
       name: "Random Name #2",
       description:
-        "Keep all your medical records and prescriptions a click away!"
-    }
+        "Keep all your medical records and prescriptions a click away!",
+    },
   ];
 
   return (
     <Carousel interval="3500" autoplay="true">
-      {items.map(item => {
+      {items.map((item) => {
         return <Item key={item.name} item={item} />;
       })}
     </Carousel>

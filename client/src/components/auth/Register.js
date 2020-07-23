@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -32,7 +32,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Register() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleOpen = () => {
     setOpen(true);
@@ -40,6 +43,11 @@ export default function Register() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(username, email, password);
   };
 
   return (
@@ -65,7 +73,7 @@ export default function Register() {
               <Typography align="center" variant="h6" color="primary">
                 Register
               </Typography>
-              <form action="" className={classes.form}>
+              <form onSubmit={handleSubmit} className={classes.form}>
                 <TextField
                   required
                   autoFocus
@@ -74,15 +82,17 @@ export default function Register() {
                   type="text"
                   className={classes.textfield}
                   fullWidth
+                  onChange={(e) => setUsername(e.target.value)}
                 />
                 <TextField
                   required
-                  id="mobile-number"
-                  label="Mobile Number"
-                  placeholder="i.e. 017xxxxxxxx"
-                  type="tel"
+                  type="email"
+                  name="email"
+                  id="email"
+                  label="Email"
                   className={classes.textfield}
                   fullWidth
+                  onChange={(e) => setEmail(e.target.value)}
                 />
 
                 <TextField
@@ -92,9 +102,11 @@ export default function Register() {
                   type="password"
                   className={classes.textfield}
                   fullWidth
+                  onChange={(e) => setPassword(e.target.value)}
                 />
 
                 <Button
+                  type="submit"
                   variant="contained"
                   color="primary"
                   style={{ marginTop: "1rem" }}

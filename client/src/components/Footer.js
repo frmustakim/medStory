@@ -6,7 +6,7 @@ import Link from "@material-ui/core/Link";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary">
+    <Typography variant="body2" color="inherit">
       {"Copyright © "}
       <Link color="inherit" href="">
         MedStory
@@ -17,12 +17,14 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   footer: {
     padding: theme.spacing(3, 2),
     marginTop: "auto",
-    textAlign: "center"
-  }
+    textAlign: "center",
+    backgroundColor: "#212121",
+    color: "white",
+  },
 }));
 
 export default function StickyFooter() {
