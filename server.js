@@ -25,6 +25,7 @@ mongoose
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/prescriptions", require("./routes/api/prescriptions"));
+app.use("/api/upload", require("./routes/api/upload"));
 
 const port = process.env.PORT || 5000;
 

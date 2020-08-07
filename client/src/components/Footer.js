@@ -20,8 +20,8 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   footer: {
     padding: theme.spacing(3, 2),
-    marginTop: "auto",
-    textAlign: "center",
+    // marginTop: "auto",
+    // textAlign: "center",
     backgroundColor: "#212121",
     color: "white",
   },
@@ -30,9 +30,18 @@ const useStyles = makeStyles((theme) => ({
 export default function StickyFooter() {
   const classes = useStyles();
 
+  const style = {
+    margin: 0,
+    top: "auto",
+    right: "auto",
+    bottom: 20,
+    left: "auto",
+    width: "100%",
+    position: "fixed",
+  };
   return (
     <div>
-      <footer className={classes.footer}>
+      <footer className={classes.footer} style={style}>
         <Container maxWidth="sm" align="center">
           <Copyright />
         </Container>

@@ -26,7 +26,8 @@ router.post("/", (req, res) => {
 
     //Validating password
     bcrypt.compare(password, user.password).then((isMatch) => {
-      if (!isMatch) return res.status(400).json("Invalid Credentials!");
+      if (!isMatch)
+        return res.status(400).json({ msg: "Invalid Credentials!" });
 
       jwt.sign(
         { id: user.id },
@@ -52,10 +53,9 @@ router.post("/", (req, res) => {
 //@desc   Get user data
 //@access Private
 router.get("/user", auth, (req, res) => {
-  console.log(req.user);
-  // User.findById(req.user.id)
-  //   .select("-password")
-  //   .then((user) => res.json(user));
+  User.findById(req.user.id)
+    .select("-password")
+    .then((user) => res.json(user));
 });
 
 module.exports = router;
