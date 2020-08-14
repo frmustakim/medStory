@@ -5,7 +5,7 @@ import LoginModal from "./auth/LoginModal";
 
 export default function AppNavBar() {
   return (
-    <Fragment style={{ flexGrow: "1" }}>
+    <Fragment>
       <AppBar position="static" color="secondary" style={{ width: "100%" }}>
         <Toolbar>
           <Typography variant="h4" style={{ flexGrow: "1" }}>

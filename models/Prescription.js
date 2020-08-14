@@ -3,8 +3,18 @@ const mongoose = require("mongoose");
 const prescriptionSchema = mongoose.Schema(
   {
     image: {
-      type: Buffer,
-      required: true,
+      name: {
+        type: String,
+      },
+      data: {
+        type: Buffer,
+      },
+      mimetype: {
+        type: String,
+      },
+      md5: {
+        type: String,
+      },
     },
     patient: {
       type: String,
@@ -12,11 +22,7 @@ const prescriptionSchema = mongoose.Schema(
     },
     userId: {
       type: String,
-      required: true,
-    },
-    date: {
-      type: Date,
-      default: Date.now,
+      // required: true,
     },
   },
   { timestamps: true }

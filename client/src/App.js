@@ -1,6 +1,6 @@
 import React from "react";
 import AppNavBar from "./components/AppNavBar";
-import Carousel from "./components/Carousel";
+// import Carousel from "./components/Carousel";
 import About from "./components/About";
 import Footer from "./components/Footer";
 import "./App.css";
