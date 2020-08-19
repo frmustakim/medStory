@@ -47,7 +47,7 @@ function Upload() {
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("");
-  const [uploadedfile, setUploadedFile] = useState({});
+  const [uploadedFile, setUploadedFile] = useState({});
   const [selectedFile, setSelectedFile] = useState("");
 
   const handleOpen = () => {
@@ -71,7 +71,6 @@ function Upload() {
     reader.onloadend = (e) => {
       setSelectedFile([reader.result]);
     };
-    // console.log(url); // Would see a path?
   };
 
   const handleSubmit = async (e) => {

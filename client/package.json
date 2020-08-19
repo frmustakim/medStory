@@ -12,7 +12,8 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-material-ui-carousel": "^1.1.1",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "react-toastify": "^6.0.8"
   },
   "scripts": {
     "start": "react-scripts start",

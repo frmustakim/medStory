@@ -10,6 +10,8 @@ import {
   Fade,
   makeStyles,
 } from "@material-ui/core";
+import { toast } from "react-toastify";
+import { register } from "../../services/auth.service";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -33,9 +35,10 @@ const useStyles = makeStyles((theme) => ({
 export default function Register() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [data, setData] = useState({});
 
   const handleOpen = () => {
     setOpen(true);
@@ -47,7 +50,39 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, email, password);
+
+    //Create user object
+    const newUser = {
+      name,
+      email,
+      password,
+    };
+
+    //Attempt to Register
+    register(newUser).then(
+      (response) => {
+        setData(response.data);
+        handleClose();
+        clearFields();
+        // showMessage("Registration successful");
+        toast.success("Registration successful");
+      },
+      (error) => {
+        // showMessage(error.response.data.msg);
+        toast.error(error.response.data.msg);
+      }
+    );
+  };
+
+  // //Shows Toast messages
+  // const showMessage = (message) => {
+  //   if (message) return toast(message);
+  // };
+
+  const clearFields = () => {
+    setName("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -55,6 +90,7 @@ export default function Register() {
       <Button type="button" color="inherit" onClick={handleOpen}>
         Register
       </Button>
+
       <Modal
         aria-labelledby="transition-modal-Register"
         aria-describedby="transition-modal-description"
@@ -73,6 +109,7 @@ export default function Register() {
               <Typography align="center" variant="h6" color="primary">
                 Register
               </Typography>
+
               <form onSubmit={handleSubmit} className={classes.form}>
                 <TextField
                   required
@@ -82,7 +119,8 @@ export default function Register() {
                   type="text"
                   className={classes.textfield}
                   fullWidth
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => setName(e.target.value.trim())}
+                  inputProps={{ minLength: 3 }}
                 />
                 <TextField
                   required
@@ -102,7 +140,8 @@ export default function Register() {
                   type="password"
                   className={classes.textfield}
                   fullWidth
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value.trim())}
+                  inputProps={{ minLength: 6 }}
                 />
 
                 <Button

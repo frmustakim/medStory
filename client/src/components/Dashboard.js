@@ -1,14 +1,14 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import { v1 as uuid } from "uuid";
 import Upload from "./Upload";
 
 function Dashboard() {
-  const [prescriptions, setPrescriptions] = useState([
+  const prescriptions = [
     { id: uuid(), name: "Eggs" },
     { id: uuid(), name: "Milk" },
     { id: uuid(), name: "Chicken" },
     { id: uuid(), name: "Potato" },
-  ]);
+  ];
 
   return (
     <Fragment>

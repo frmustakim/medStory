@@ -46,7 +46,7 @@ export default function LoginModal() {
   const onChange = (e) =>
     setInput({
       ...input,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value.trim(),
     });
 
   const handleSubmit = (e) => {
