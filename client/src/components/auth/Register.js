@@ -38,7 +38,6 @@ export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [data, setData] = useState({});
 
   const handleOpen = () => {
     setOpen(true);
@@ -54,30 +53,22 @@ export default function Register() {
     //Create user object
     const newUser = {
       name,
-      email,
+      email: email.toLocaleLowerCase(),
       password,
     };
 
     //Attempt to Register
     register(newUser).then(
       (response) => {
-        setData(response.data);
         handleClose();
         clearFields();
-        // showMessage("Registration successful");
         toast.success("Registration successful");
       },
       (error) => {
-        // showMessage(error.response.data.msg);
         toast.error(error.response.data.msg);
       }
     );
   };
-
-  // //Shows Toast messages
-  // const showMessage = (message) => {
-  //   if (message) return toast(message);
-  // };
 
   const clearFields = () => {
     setName("");

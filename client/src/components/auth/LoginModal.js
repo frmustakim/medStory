@@ -10,6 +10,8 @@ import {
   Fade,
   makeStyles,
 } from "@material-ui/core";
+import { login } from "../../services/auth.service";
+import { toast } from "react-toastify";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -52,9 +54,23 @@ export default function LoginModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = input;
-    console.log("email", email);
-    console.log("password", password);
-    console.log(input);
+
+    const user = {
+      email: email.toLowerCase(),
+      password,
+    };
+
+    login(user).then(
+      (response) => {
+        // console.log(response.user);
+        handleClose();
+        // setInput({});
+        toast.success(`Welcome ${response.user.name.toUpperCase()}`);
+      },
+      (error) => {
+        toast.error(error.response.data.msg);
+      }
+    );
   };
 
   return (
@@ -83,6 +99,7 @@ export default function LoginModal() {
               <form onSubmit={handleSubmit} className={classes.form}>
                 <TextField
                   required
+                  autoFocus
                   type="email"
                   name="email"
                   id="email"
@@ -101,6 +118,7 @@ export default function LoginModal() {
                   className={classes.textfield}
                   fullWidth
                   onChange={onChange}
+                  inputProps={{ minLength: 6 }}
                 />
 
                 <Button

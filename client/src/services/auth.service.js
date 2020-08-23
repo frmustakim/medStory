@@ -12,24 +12,23 @@ function login({ email, password }) {
   // Request body
   const body = JSON.stringify({ email, password });
 
-  return axios.post("/api/auth", body, config);
-  // .then(res =>
-  //   dispatch({
-  //     type: LOGIN_SUCCESS,
-  //     payload: res.data
-  //   })
-  // )
-  // .catch(err => {
-  //   dispatch(
-  //     returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
-  //   );
-  //   dispatch({
-  //     type: LOGIN_FAIL
-  //   });
-  // });
+  return axios
+    .post("/api/auth", body, config)
+    .then((res) => {
+      if (res) {
+        console.log(res.data.token);
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+      }
+      return res.data;
+    })
+    .catch((err) => {
+      throw err;
+    });
 }
 
-function logout() {}
+function logout() {
+  localStorage.removeItem("token");
+}
 
 //Register user
 function register({ name, email, password }) {
@@ -43,9 +42,19 @@ function register({ name, email, password }) {
   // Request body
   const body = JSON.stringify({ name, email, password });
 
-  return axios.post("/api/users", body, config);
+  return axios
+    .post("/api/users", body, config)
+    .then((res) => {
+      if (res) {
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+      }
+      return res.data;
+    })
+    .catch((err) => {
+      throw err;
+    });
 }
 
-function getCurrentUser() {}
+function loadUser() {}
 
-export { login, logout, register, getCurrentUser };
+export { login, logout, register, loadUser };
