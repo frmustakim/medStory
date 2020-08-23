@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://mustakim:mostakim@medstory-dev-w81nx.mongodb.net/devDB?retryWrites=true&w=majority",
-  "jwtSecret": "mysl_mysecretusingjwt"
+  "mongoURI": "your mongodb uri string",
+  "jwtSecret": "mysecretusingjwt"
 }
