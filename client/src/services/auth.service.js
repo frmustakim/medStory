@@ -16,8 +16,8 @@ function login({ email, password }) {
     .post("/api/auth", body, config)
     .then((res) => {
       if (res) {
-        console.log(res.data.token);
-        localStorage.setItem("token", JSON.stringify(res.data.token));
+        // console.log(res.data.token);
+        localStorage.setItem("token", res.data.token);
       }
       return res.data;
     })
@@ -46,7 +46,7 @@ function register({ name, email, password }) {
     .post("/api/users", body, config)
     .then((res) => {
       if (res) {
-        localStorage.setItem("token", JSON.stringify(res.data.token));
+        // localStorage.setItem("token", res.data.token);
       }
       return res.data;
     })
@@ -55,6 +55,31 @@ function register({ name, email, password }) {
     });
 }
 
-function loadUser() {}
+function loadUser() {
+  // Get token from localstorage
+  const token = localStorage.getItem("token");
+
+  // Headers
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+
+  // If token, add to headers
+  if (token) {
+    config.headers["x-auth-token"] = token;
+  }
+
+  return axios.get("/api/auth/user", config).then(
+    (response) => {
+      if (response) {
+        // console.log(response.data);
+        return response;
+      }
+    },
+    (err) => console.log("No token found")
+  );
+}
 
 export { login, logout, register, loadUser };

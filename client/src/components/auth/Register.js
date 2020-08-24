@@ -62,7 +62,7 @@ export default function Register() {
       (response) => {
         handleClose();
         clearFields();
-        toast.success("Registration successful");
+        toast.success("Success! Login to continue");
       },
       (error) => {
         toast.error(error.response.data.msg);

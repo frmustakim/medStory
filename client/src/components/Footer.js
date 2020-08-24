@@ -34,7 +34,7 @@ export default function StickyFooter() {
     margin: 0,
     top: "auto",
     right: "auto",
-    bottom: 20,
+    bottom: 0,
     left: "auto",
     width: "100%",
     position: "fixed",

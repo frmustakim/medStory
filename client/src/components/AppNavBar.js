@@ -2,8 +2,26 @@ import React, { Fragment } from "react";
 import { AppBar, Toolbar, Typography, Link } from "@material-ui/core";
 import Register from "./auth/Register";
 import LoginModal from "./auth/LoginModal";
+import Logout from "./auth/Logout";
 
-export default function AppNavBar() {
+export default function AppNavBar({ user }) {
+  const authLinks = (
+    <Fragment>
+      <Typography>
+        <span style={{ marginRight: "1rem" }}>
+          {user ? `${user.name.toUpperCase()}` : ""}
+        </span>
+      </Typography>
+      <Logout />
+    </Fragment>
+  );
+  const guestLinks = (
+    <Fragment>
+      <LoginModal />
+      <Register />
+    </Fragment>
+  );
+
   return (
     <Fragment>
       <AppBar position="static" color="secondary" style={{ width: "100%" }}>
@@ -13,16 +31,7 @@ export default function AppNavBar() {
               <span style={{ color: "skyBlue" }}>Med</span>Story
             </Link>
           </Typography>
-          <Fragment>
-            {/* <Button color="inherit" href="">
-                About
-              </Button>
-              <Button color="inherit" href="">
-                Contact
-              </Button> */}
-            <Register />
-            <LoginModal />
-          </Fragment>
+          <Fragment>{user ? authLinks : guestLinks}</Fragment>
         </Toolbar>
       </AppBar>
     </Fragment>

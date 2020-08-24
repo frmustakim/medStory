@@ -65,7 +65,9 @@ export default function LoginModal() {
         // console.log(response.user);
         handleClose();
         // setInput({});
-        toast.success(`Welcome ${response.user.name.toUpperCase()}`);
+        // toast.success(`Welcome ${response.user.name.toUpperCase()}`);
+
+        window.location.reload();
       },
       (error) => {
         toast.error(error.response.data.msg);
