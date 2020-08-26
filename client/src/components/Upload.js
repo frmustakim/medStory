@@ -42,13 +42,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Upload() {
+function Upload({ user }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("");
-  const [uploadedFile, setUploadedFile] = useState({});
+  // const [uploadedFile, setUploadedFile] = useState({});
   const [selectedFile, setSelectedFile] = useState("");
+  console.log(user);
 
   const handleOpen = () => {
     setOpen(true);
@@ -75,21 +76,23 @@ function Upload() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(file);
 
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("patient", user.name);
+    formData.append("userId", user._id);
 
     try {
-      const res = await axios.post("/api/upload", formData, {
+      // const res =
+      await axios.post("/api/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
 
-      const { fileName, filePath } = res.data;
-      // console.log(filePath);
-      setUploadedFile({ fileName, filePath });
+      // const { fileName, filePath } = res.data;
+      // // console.log(filePath);
+      // setUploadedFile({ fileName, filePath });
     } catch (err) {
       // console.log(err.response);
       if (err.response.status === 500) {

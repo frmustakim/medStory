@@ -1,22 +1,41 @@
-import React, { Fragment } from "react";
-import { v1 as uuid } from "uuid";
+import React, { Fragment, useState, useEffect } from "react";
 import Upload from "./Upload";
+import { getPrescriptions } from "../services/data.service";
 
-function Dashboard() {
-  const prescriptions = [
-    { id: uuid(), name: "Eggs" },
-    { id: uuid(), name: "Milk" },
-    { id: uuid(), name: "Chicken" },
-    { id: uuid(), name: "Potato" },
-  ];
+function Dashboard({ user }) {
+  const [prescriptions, setPrescriptions] = useState();
+  useEffect(() => {
+    getPrescriptions(user).then((items) => {
+      if (items) {
+        console.log(items.data);
+        setPrescriptions(items.data);
+        return;
+      }
+    });
+  }, [user]);
+  // console.log(prescriptions);
 
   return (
     <Fragment>
-      <Upload />
+      {user ? <Upload user={user} /> : ""}
       <h1>Dashboard</h1>
-      {prescriptions.map(({ id, name }) => (
-        <h4 key={id}> {name}</h4>
-      ))}
+      {prescriptions
+        ? prescriptions.map(({ _id, md5, patient, image }) => {
+            const buffer = Buffer.from(image.data.data);
+            const imgsrc = buffer.toString("base64");
+
+            return (
+              <Fragment key={_id}>
+                <h4> {patient} </h4>
+                <img
+                  key={md5}
+                  src={`data:${image.mimetype};base64,${imgsrc}`}
+                  alt={image.name}
+                />
+              </Fragment>
+            );
+          })
+        : "No items"}
     </Fragment>
   );
 }

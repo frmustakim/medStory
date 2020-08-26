@@ -21,7 +21,7 @@ function App() {
     <div className="App">
       <AppNavBar user={user} />
       <ToastContainer />
-      {user ? <Dashboard /> : <Carousel />}
+      {user ? <Dashboard user={user} /> : <Carousel />}
       <About />
       <Footer />
     </div>

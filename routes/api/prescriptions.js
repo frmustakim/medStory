@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
 
 //User Model
 const Prescription = require("../../models/Prescription");
@@ -11,8 +10,8 @@ const Prescription = require("../../models/Prescription");
 router.get("/", (req, res) => {
   Prescription.find()
     .sort({ date: -1 }) //des order by date
-    .then((items) => res.json(items))
-    .then(() => console.log(req.body));
+    .then((items) => res.json(items));
+  // .then(() => console.log("req.body"));
 });
 
 // @route   POST api/prescriptions
