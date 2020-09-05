@@ -11,6 +11,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -21,8 +22,6 @@ const useStyles = makeStyles((theme) => ({
   card: {
     margin: 10,
     outline: "none",
-    // maxWidth: "85%",
-    // maxHeight: "85%",
   },
   form: {
     textAlign: "center",
@@ -42,14 +41,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Upload({ user }) {
+function Upload({ user, uploaded }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("");
-  // const [uploadedFile, setUploadedFile] = useState({});
+  // const [uploadedFile, setUploadedFile] = useState(false);
   const [selectedFile, setSelectedFile] = useState("");
-  console.log(user);
+  // console.log(user);
 
   const handleOpen = () => {
     setOpen(true);
@@ -94,16 +93,19 @@ function Upload({ user }) {
       // // console.log(filePath);
       // setUploadedFile({ fileName, filePath });
     } catch (err) {
-      // console.log(err.response);
       if (err.response.status === 500) {
-        console.log("There was a problem with the server");
+        // console.log("There was a problem with the server");
+        toast.error("There was a problem with the server");
       } else {
-        console.log(err.response.data.msg);
+        // console.log(err.response.data.msg);
+        toast.error(err.response.data.msg);
       }
     }
 
     //close modal
     handleClose();
+    // window.location.reload();
+    uploaded();
   };
 
   return (

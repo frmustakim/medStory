@@ -4,12 +4,13 @@ const router = express.Router();
 //User Model
 const Prescription = require("../../models/Prescription");
 
-// @route   GET api/prescriptions
-// @desc    Get all prescriptions
+// @route   GET api/prescriptions/:_id
+// @desc    Get user prescriptions by userId
 // @access  Private***
-router.get("/", (req, res) => {
-  Prescription.find()
-    .sort({ date: -1 }) //des order by date
+router.get("/:_id", (req, res) => {
+  // console.log(req.params._id);
+  Prescription.find({ userId: req.params._id })
+    .sort({ createdAt: -1 }) //des order by date
     .then((items) => res.json(items));
   // .then(() => console.log("req.body"));
 });
