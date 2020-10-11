@@ -1,4 +1,0 @@
-{
-  "mongoURI": "your mongodb uri string",
-  "jwtSecret": "mysecretusingjwt"
-}
