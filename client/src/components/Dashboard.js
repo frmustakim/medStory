@@ -11,9 +11,12 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    width: "70%",
+    width: "95%",
     margin: "0 auto",
     position: "relative",
+    [theme.breakpoints.up("md")]: {
+      width: "70%",
+    },
   },
   imgStyle: {
     width: "100%",

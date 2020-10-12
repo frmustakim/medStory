@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
     left: "auto",
     position: "fixed",
     color: "blue",
+    zIndex: "1",
   },
 }));
 
