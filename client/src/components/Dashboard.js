@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Upload from "./Upload";
-import { getPrescriptions } from "../services/data.service";
+import { getPrescriptions, deletePrescription } from "../services/data.service";
 import {
   makeStyles,
   Container,
@@ -49,8 +49,10 @@ function Dashboard({ user }) {
     setCount(count + 1);
   };
 
-  const handleDelete = () => {
-    alert("Delete clicked!");
+  const handleDelete = (id) => {
+    deletePrescription(id);
+    setCount(count - 1);
+    console.log(id);
   };
 
   return (
@@ -86,7 +88,7 @@ function Dashboard({ user }) {
                 <IconButton
                   aria-label="delete"
                   className={classes.delBtnntainer}
-                  onClick={handleDelete}
+                  onClick={() => handleDelete(_id)}
                 >
                   <DeleteIcon className={classes.delIcon} />
                 </IconButton>
