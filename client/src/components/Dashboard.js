@@ -60,7 +60,7 @@ function Dashboard({ user }) {
 
   return (
     <Fragment>
-      <div style={{ minHeight: "50vh" }}>
+      <div style={{ minHeight: "69vh" }}>
         {user ? <Upload user={user} uploaded={increment} /> : ""}
         <Typography variant="h6" align="center" gutterBottom>
           Dashboard

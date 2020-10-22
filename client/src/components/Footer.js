@@ -24,24 +24,17 @@ const useStyles = makeStyles((theme) => ({
     // textAlign: "center",
     backgroundColor: "#212121",
     color: "white",
+    position: "relative",
+    width: "100%vw",
   },
 }));
 
 export default function StickyFooter() {
   const classes = useStyles();
 
-  const style = {
-    margin: 0,
-    top: "auto",
-    right: "auto",
-    bottom: 0,
-    left: "auto",
-    width: "100%",
-    position: "fixed",
-  };
   return (
     <div>
-      <footer className={classes.footer} style={style}>
+      <footer className={classes.footer}>
         <Container maxWidth="sm" align="center">
           <Copyright />
         </Container>
